@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script type="text/javascript" src="../static/js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#btn').click(function() {
+                var commentContent =$('#commentContent').val();
+                var commentAuthor =$('#commentAuthor').val();
+                var param = {'commentContent':commentContent,'commentAuthor':commentAuthor};
+                if(commentContent==null||commentContent==''){
+                    alert("请填写内容");
+                    return false;
+                }else if (commentAuthor==null||commentAuthor=='') {
+                    alert("请填写名称");
+                    return false;
+                }
+                $.ajax({
+                    url:'/doadd',
+                    type:'post',
+                    data:param,
+                    success:function(result){
+                        if(result=='ok'){
+                            alert("添加成功");
+                            location.href='/index';
+                        }else {
+                            alert("添加失败");
+                            return false;
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+<form >
+    <table align="center" border='1' width="50%">
+
+        <tr><td colspan="3"  style="text-align:center;font-size:30px"><b>增加评论</b></td></tr>
+        <tr><td colspan="3"><span style="vertical-align:center">评论内容:  </span>
+            <textarea rows="4" cols="60" name="commentContent" id="commentContent" ></textarea>
+        </td></tr>
+
+        <tr>
+            <td colspan="3">评论人:&nbsp;&nbsp;&nbsp;
+                <input type="text" name="commentAuthor" id="commentAuthor" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="3" style="text-align:center">
+                <input type="button" id="btn" value="提交"/>
+                <a href="javascript:location.href='/index'"><input type="button"  value="返回" /></a>
+            </td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>
