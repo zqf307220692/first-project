@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class NewsComment implements Serializable {
     //卢克肖
-    //卢卡库
+    //琼斯
     //阿什利杨
     //鸭爸爸
     private Integer commentId; //INT PRIMARY KEY AUTO_INCREMENT,#评论编号
